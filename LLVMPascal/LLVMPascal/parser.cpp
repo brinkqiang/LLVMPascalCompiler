@@ -932,15 +932,16 @@ namespace llvmpascal
 
     ExprASTPtr Parser::parseBlockOrStatement()
     {
-        switch(scanner_.getToken().getTokenValue())
-        {
-        case TokenValue::BEGIN:
-            return parseBlockStatement();
-        case TokenValue::SEMICOLON:
-            return std::make_unique<BlockAST>(scanner_.getToken().getTokenLocation(), VecExprASTPtr{});
-        default:
-            return parseStatement();
-        }
+		switch (scanner_.getToken().getTokenValue())
+		{
+		case TokenValue::BEGIN:
+			return parseBlockStatement();
+		case TokenValue::SEMICOLON:
+			return std::make_unique<BlockAST>(scanner_.getToken().getTokenLocation(), VecExprASTPtr{});
+		default:
+			return parseStatement();
+		}
+		return parseStatement();
     }
 
     // Helper Functions.
